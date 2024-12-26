@@ -16,4 +16,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("UPDATE User u SET u.status = 'PENDING' WHERE u.status = 'APPROVED' AND u.role ='USER' AND u.id IN :userIds")
     void updatePendingStatus(List<Long> userIds);
 
+    default User findUserById(Long id) {
+        return findById(id).orElseThrow(() -> new IllegalArgumentException("해당 ID에 맞는 값이 존재하지 않습니다."));
+    }
+
 }
