@@ -2,11 +2,14 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import org.hibernate.annotations.DynamicInsert;
 
 
 @Entity
 @Getter
 // TODO: 6. Dynamic Insert
+// @DynamicInsert -> 데이터베이스에 데이터를 저장할 때 일부 컬럼만 동적으로 삽입하게 해주는 기능
+@DynamicInsert
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
