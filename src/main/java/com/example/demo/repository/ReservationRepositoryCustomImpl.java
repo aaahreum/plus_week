@@ -15,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReservationRepositoryCustomImpl implements ReservationRepositoryCustom {
 
+    // QueryDSL을 사용하기 위해 JPAQueryFactory 주입
     private final JPAQueryFactory queryFactory;
 
     @Override
@@ -34,10 +35,13 @@ public class ReservationRepositoryCustomImpl implements ReservationRepositoryCus
                 .fetch();
     }
 
+    // userId가 null이 아니라면 userId와 같은 값을 가진 예약을 찾는 조건을 추가하는 메서드
+    // BooleanExpression -> QueryDSL에서 사용되는 반환 타입으로 조건을 표현하는 객체. 주로 where 절에 사용되는 조건을 동적으로 생성하는 데 사용된다.
     private BooleanExpression eqUserId(Long userId) {
         return userId != null ? QReservation.reservation.user.id.eq(userId) : null;
     }
 
+    // itemId가 null이 아니라면 userId와 같은 값을 가진 예약을 찾는 조건을 추가하는 메서드
     private BooleanExpression eqItemId(Long itemId) {
         return itemId != null ? QReservation.reservation.item.id.eq(itemId) : null;
     }

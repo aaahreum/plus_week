@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-// 사용자가 관리자 권한을 가지고 있는지 확인하는 인터셉터
+// 사용자가 ADMIN 권한을 가지고 있는지 확인하는 인터셉터
 @Component
 public class AdminRoleInterceptor implements HandlerInterceptor {
 

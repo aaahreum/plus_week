@@ -73,6 +73,8 @@ public class ReservationService {
     public List<ReservationResponseDto> searchAndConvertReservations(Long userId, Long itemId) {
 
 //        List<Reservation> reservations = searchReservations(userId, itemId);
+
+        // 커스텀 레파지토리에서 정의한 searchReservations 메서드를 호출
         List<Reservation> reservations = reservationRepository.searchReservations(userId, itemId);
 
         return convertToDto(reservations);
@@ -109,6 +111,7 @@ public class ReservationService {
     public ReservationResponseDto updateReservationStatus(Long reservationId, ReservationStatus status) {
         Reservation reservation = reservationRepository.findReservationById(reservationId);
 
+        // 불필요한 else 구문 제거
         if ("APPROVED".equals(status) && !"PENDING".equals(reservation.getStatus())) {
             throw new IllegalArgumentException("PENDING 상태만 APPROVED로 변경 가능합니다.");
         }

@@ -13,11 +13,11 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY) // 지연로딩. 해당 엔티티를 실제로 사용할 때 조회하도록 한다.
     @JoinColumn(name = "item_id")
     private Item item;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY) // 지연로딩. 해당 엔티티를 실제로 사용할 때 조회하도록 한다.
     @JoinColumn(name = "user_id")
     private User user;
 
